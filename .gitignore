@@ -1,0 +1,7 @@
+node_modules/
+#vscode
+.vscode
+jsconfig.json
+
+#macos
+.DS_Store
