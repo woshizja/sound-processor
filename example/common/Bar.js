@@ -31,7 +31,7 @@ class Bar {
             bottom
         } = this;
         const newY = bottom - h * opacity;
-        ctx.fillStyle = `rgba(${212 * opacity}, 60, 51, ${opacity})`;
+        ctx.fillStyle = `hsla(4, ${80*opacity}%, 51%, ${opacity})`;
 
         ctx.beginPath();
         ctx.rect(x, newY, w, h * opacity);

@@ -27,9 +27,14 @@ class Square {
             y,
             w
         } = this;
-        ctx.fillStyle = `rgba(${212 * opacity}, 60, 51, ${opacity})`;
+        const radius = w / 2 ;
+
+        ctx.fillStyle = `hsla(${360 * opacity}, 50%, 50%, ${opacity})`;
+        //`rgba(${212 * opacity}, 60, 51, ${opacity})`;
+
         ctx.beginPath();
-        ctx.rect(x, y, w, w);
+        ctx.arc(x + radius , y + radius, (w * opacity) / 2, 0, 2 * Math.PI);
+        // ctx.rect(x, y, w, w);
         ctx.closePath();
         ctx.fill();
     }

@@ -18,3 +18,30 @@ html, body {
 	height: 100%;
 	background-color: #1e1f26;
 }
+
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	margin-left: -70px;
+	background-color: #f0f0f0;
+	width: 140px;
+	height: 40px;
+	outline: none;
+	border: none;
+	border-radius: 20px;
+	transition: all ease 600ms;
+	cursor: pointer;
+
+	.icon {
+		margin-left: 10px;
+	}
+
+	&.playing {
+		background-color: #333;
+		color: #999;
+	}
+}

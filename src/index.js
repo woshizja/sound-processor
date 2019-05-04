@@ -9,7 +9,9 @@ class SoundProcessor {
             fftSize,
             endFrequency,
             startFrequency,
-            outBandsQty
+            outBandsQty,
+            tWeight,
+            aWeight
         } = options;
 
         if(!fftSize || !sampleRate || !outBandsQty) {
@@ -17,18 +19,20 @@ class SoundProcessor {
         }
         
         this.sampleRate = sampleRate; // 采样率
-        this.fftSize = fftSize; // fftSize
+        this.fftSize = fftSize || 1024; // fftSize
         this.bandsQty = Math.floor(fftSize / 2); // 频带数
         this.outBandsQty = outBandsQty; // 输出的频带数
         this.bandwidth = sampleRate / fftSize; // 带宽
         this.startFrequency = startFrequency || 0;
-        this.endFrequency = endFrequency || sampleRate;
+        this.endFrequency = endFrequency || 10000;
+        this.tWeight = !!tWeight;
+        this.aWeight = aWeight === undefined ? true : !!aWeight;
         
         // 默认标准正态分布: N(0, 1)
         this.filterParams = {
             mu: 0, // 固定为0
             sigma: filterParams.sigma || 1,
-            kernelRadius: filterParams.kernelRadius || 2,
+            filterRadius: Math.floor(filterParams.radius || 0)
         };
 
         this.aWeights = [];
@@ -97,13 +101,13 @@ class SoundProcessor {
         const {
             mu,
             sigma,
-            kernelRadius
+            filterRadius
         } = filterParams;
 
-        const radius = kernelRadius;
+        const radius = filterRadius;
 
         for(let i = -radius; i < 1; i++) {
-            // 95%置信区间内均分
+            // step=1
             gKernel.push(gauss(i, sigma, mu));
         }
 
@@ -115,7 +119,7 @@ class SoundProcessor {
         this.gKernelSum = gKernel.reduce((prev, curr) => {
             return prev + curr
         });
-        this.kernelRadius = kernelRadius;
+        this.filterRadius = filterRadius;
 
         console.log(gKernel)
     }
@@ -124,26 +128,24 @@ class SoundProcessor {
         const {
             gKernel,
             gKernelSum,
-            kernelRadius
+            filterRadius
         } = this;
 
-        // 计权：卷积
-        for (let i = 0; i < frequencies.length; i++) {
-            // if (i < kernelRadius || i > frequencies.length - kernelRadius) {
-            //     continue;
-            // }
+        if(!filterRadius) return;
 
+        // 滤波
+        for (let i = 0; i < frequencies.length; i++) {
             let count = 0;
-            for (let j = i - kernelRadius; j < i + kernelRadius; j++) {
+            for (let j = i - filterRadius; j < i + filterRadius; j++) {
                 const value =  frequencies[j] !== undefined ? frequencies[j] : 0;
-                count += value * gKernel[j - i + kernelRadius];
+                count += value * gKernel[j - i + filterRadius];
             }
 
             frequencies[i] = (count / gKernelSum);
         }
     }
 
-    weighting(frequencies) {
+    aWeighting(frequencies) {
         const {aWeights} = this;
 
         for(let i = 0; i < frequencies.length; i++) {
@@ -153,7 +155,7 @@ class SoundProcessor {
         }
     }
 
-    generateSpectrums(frequencies) {
+    divide(frequencies) {
         const {
             outBandsQty,
             bandwidth,
@@ -175,16 +177,11 @@ class SoundProcessor {
                 count += frequencies[i] * frequencies[i];
             }
             temp[i] = Math.sqrt(count / (endIndex + 1 - startIndex));
-    
-            // 找最大
-            // temp.push(
-            //     Math.max.apply(this, amplitudes.slice(startIndex, endIndex + 1))
-            // );
         }
         return temp;
     }
 
-    timeAvg(frequencies) {
+    timeWeighting(frequencies) {
         const {
             history,
             historyLimit
@@ -206,19 +203,23 @@ class SoundProcessor {
     }
 
     process(frequencies) {
-        // 1. 计权
-        // 2. 频谱
-        // 3. 滤波
-        // this.weighting(frequencies);
-        // const temp = this.generateSpectrums(frequencies);
-        // this.filter(temp);
+        // 1. filter
+        if(this.filterRadius) {
+            this.filter(frequencies);
+        }
 
-        this.timeAvg(frequencies);
-        this.filter(frequencies);
-        this.weighting(frequencies);
-        const temp = this.generateSpectrums(frequencies);
-        
-        return temp;
+        // 2. time weight
+        if(this.tWeight) {
+            this.timeWeighting(frequencies);
+        }
+
+        // 3. a weight
+        if(this.aWeight) {
+            this.aWeighting(frequencies);
+        }
+
+        // 4. spectrum divide
+        return this.divide(frequencies);
     }
 }
 

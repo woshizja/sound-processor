@@ -18,3 +18,33 @@ html, body {
 	height: 100%;
 	background-color: #1e1f26;
 }
+
+
+.btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background-color: #f0f0f0;
+	width: 140px;
+	height: 140px;
+	margin-left: -70px;
+	margin-top: -70px;
+	outline: none;
+	border: none;
+	border-radius: 70px;
+	transition: opacity ease 250ms;
+	will-change: transform,opacity;
+	cursor: pointer;
+
+	.icon {
+		margin-left: 10px;
+	}
+
+	&.playing {
+		background-color: hsl(4, 41%, 50%);
+		color: #f0f0f0;
+	}
+}
