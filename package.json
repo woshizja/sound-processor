@@ -1,8 +1,7 @@
-
 {
   "name": "sound-processor",
-  "version": "0.1.0",
-  "description": "A small, dependency-free sound processor. Include a-weighting, time-weighting, gaussian filter, octave divide.",
+  "version": "1.0.0",
+  "description": "A small, dependency-free sound processor for audio visualization. Include a-weighting, time-weighting, gaussian filter, octave divide.",
   "license": "MIT",
   "main": "public/index.min.js",
   "author": "junz91@163.com",
@@ -13,50 +12,7 @@
     "octave",
     "audio visual"
   ],
-  "scripts": {
-    "start": "webpack-dev-server --config ./webpack/webpack.dev.js --env.dev",
-    "clean": "rimraf -rf ./public/",
-    "build": "npm run clean && webpack --config ./webpack/webpack.prod.js --env.prod"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/preset-env": "^7.1.6",
-    "@babel/preset-react": "^7.0.0",
-    "autoprefixer": "^9.4.4",
-    "babel-loader": "^8.0.4",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "css-loader": "^0.28.11",
-    "elint": "^1.8.1",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "file-loader": "^2.0.0",
-    "glslify-loader": "^1.0.2",
-    "html-webpack-plugin": "^3.2.0",
-    "http-server": "^0.11.1",
-    "inline-manifest-webpack-plugin": "^4.0.2",
-    "less": "^2.7.3",
-    "less-loader": "^4.1.0",
-    "mini-css-extract-plugin": "^0.4.4",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "postcss-loader": "^2.1.6",
-    "raw-loader": "^0.5.1",
-    "react-svg-loader": "^2.1.0",
-    "style-loader": "^0.16.1",
-    "uglifyjs-webpack-plugin": "^2.0.1",
-    "webpack": "^4.21.0",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9",
-    "webpack-merge": "^4.1.4"
-  },
-  "dependencies": {
-    "@babel/polyfill": "7.4.0",
-    "prop-types": "^15.6.1",
-    "querystring": "^0.2.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0",
-    "react-transition-group": "^2.2.1"
-  }
+  "scripts": {},
+  "devDependencies": {},
+  "dependencies": {}
 }

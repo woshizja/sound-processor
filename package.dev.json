@@ -1,3 +1,4 @@
+
 {
   "name": "sound-processor",
   "version": "0.1.0",
@@ -58,23 +59,4 @@
     "react-router-dom": "^5.0.0",
     "react-transition-group": "^2.2.1"
   }
-}
-
-{
-  "name": "sound-processor",
-  "version": "1.0.0",
-  "description": "A small, dependency-free sound processor for audio visualization. Include a-weighting, time-weighting, gaussian filter, octave divide.",
-  "license": "MIT",
-  "main": "public/index.min.js",
-  "author": "junz91@163.com",
-  "keywords": [
-    "audio",
-    "aweighting",
-    "gaussian filter",
-    "octave",
-    "audio visual"
-  ],
-  "scripts": {},
-  "devDependencies": {},
-  "dependencies": {}
 }

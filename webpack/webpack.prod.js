@@ -17,7 +17,7 @@ module.exports = (env) => {
             path: path.resolve(__dirname, '../public'),
             filename: '[name].[chunkhash:8].js',
             chunkFilename: '[name].[chunkhash:8].js',
-            publicPath: '/sound-processor/public'
+            publicPath: '/sound-processor/public/'
         },
         module: {
             rules: [
