@@ -4,7 +4,7 @@ import { aWeighting, gauss } from './util.js';
 class SoundProcessor {
     constructor(options = {}) {
         const {
-            filterParams = {},
+            filterParams,
             sampleRate,
             fftSize,
             endFrequency,
@@ -28,12 +28,14 @@ class SoundProcessor {
         this.tWeight = !!tWeight;
         this.aWeight = aWeight === undefined ? true : !!aWeight;
         
-        // 默认标准正态分布: N(0, 1)
-        this.filterParams = {
-            mu: 0, // 固定为0
-            sigma: filterParams.sigma || 1,
-            filterRadius: Math.floor(filterParams.radius || 0)
-        };
+        if(filterParams) {
+            // 默认标准正态分布: N(0, 1)
+            this.filterParams = {
+                mu: 0, // 固定为0
+                sigma: filterParams.sigma || 1,
+                filterRadius: filterParams.radius === undefined ? 2 : Math.floor(filterParams.radius)
+            };
+        }
 
         this.aWeights = [];
         this.bands = [];
@@ -204,7 +206,7 @@ class SoundProcessor {
 
     process(frequencies) {
         // 1. filter
-        if(this.filterRadius) {
+        if(this.filterParams) {
             this.filter(frequencies);
         }
 
