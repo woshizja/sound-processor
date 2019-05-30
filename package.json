@@ -16,6 +16,10 @@
     "octave",
     "audio visualization"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:woshizja/sound-processor.git"
+  },
   "scripts": {},
   "devDependencies": {},
   "dependencies": {}
