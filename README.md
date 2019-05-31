@@ -16,18 +16,18 @@
 4. [A计权](https://www.noisemeters.com/help/faq/frequency-weighting/)，模拟人对不同频率声音的主观感受；
 5. 频带划分，遵循倍频程的算式；
 
-三个示例：
+三个示例（音频放在github上加载比较慢，需要等久一点）：
 - [demo1](https://woshizja.github.io/sound-processor/public/bar.html)；
 
-![bar](https://p1.music.126.net/-SE6SyLpr8I1iGRWWkiatg==/109951164110182590.gif)
+![bar](https://p1.music.126.net/2cVN96NvtkhWoRXqYbMk6A==/109951164111107853.gif)
 
 - [demo2](https://woshizja.github.io/sound-processor/public/circle.html)；
 
-![circle](https://p1.music.126.net/YSARkTCdYGw1JCA7HaKZwg==/109951164110179680.gif)
+![circle](https://p1.music.126.net/ZOX9Un-PjLGmkMhsj9mqhw==/109951164111111781.gif)
 
 - [demo3](https://woshizja.github.io/sound-processor/public/dot.html)；
 
-![dot](https://p1.music.126.net/1g2twhCkzo-494EFpqpnAA==/109951164110177742.gif)
+![dot](https://p1.music.126.net/YWfVwL7DQYCvQLBfeCJefQ==/109951164111118060.gif)
 
 ### 安装
 ```
