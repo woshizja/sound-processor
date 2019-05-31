@@ -1,4 +1,6 @@
-# sound-processor [English](https://github.com/woshizja/sound-processor/blob/master/README.en.md)
+# sound-processor 
+
+# [English readme](https://github.com/woshizja/sound-processor/blob/master/README.en.md)
 
 一个极小（gzip < 3KB）的处理音频信号的库，作为**音频可视化**的底层部分，使用相对科学的方法处理原始音频信号并输出符合人类主观听觉的信号，内部的处理流程如下：
 
