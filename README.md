@@ -1,4 +1,4 @@
-# sound-processor
+# sound-processor [English](https://github.com/woshizja/sound-processor/blob/master/README.en.md)
 
 一个极小（gzip < 3KB）的处理音频信号的库，作为**音频可视化**的底层部分，使用相对科学的方法处理原始音频信号并输出符合人类主观听觉的信号，内部的处理流程如下：
 
@@ -15,6 +15,8 @@
 
 4. [A计权](https://www.noisemeters.com/help/faq/frequency-weighting/)，模拟人对不同频率声音的主观感受；
 5. 频带划分，遵循倍频程的算式；
+
+> 详细说明见博客[《音频可视化中的信号处理方案》](https://segmentfault.com/a/1190000019345560)
 
 三个示例（音频放在github上加载比较慢，需要等久一点）：
 - [demo1](https://woshizja.github.io/sound-processor/public/bar.html)；
